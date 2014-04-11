@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/asf/!svn/ver/1355128/giraph/trunk/src/main/java/org/apache/giraph/benchmark
+END
+HashMapVertexPageRankBenchmark.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/benchmark/HashMapVertexPageRankBenchmark.java
+END
+PseudoRandomVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/benchmark/PseudoRandomVertexInputFormat.java
+END
+PageRankComputation.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/benchmark/PageRankComputation.java
+END
+RandomMessageBenchmark.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1355128/giraph/trunk/src/main/java/org/apache/giraph/benchmark/RandomMessageBenchmark.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/benchmark/package-info.java
+END
+PageRankBenchmark.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/benchmark/PageRankBenchmark.java
+END

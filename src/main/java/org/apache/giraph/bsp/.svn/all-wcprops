@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/asf/!svn/ver/1355128/giraph/trunk/src/main/java/org/apache/giraph/bsp
+END
+CentralizedService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/CentralizedService.java
+END
+BspInputSplit.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/BspInputSplit.java
+END
+CentralizedServiceWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/CentralizedServiceWorker.java
+END
+SuperstepState.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/SuperstepState.java
+END
+ImmutableOutputCommitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/ImmutableOutputCommitter.java
+END
+BspOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/BspOutputFormat.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/package-info.java
+END
+BspRecordWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/BspRecordWriter.java
+END
+BspRecordReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/BspRecordReader.java
+END
+CentralizedServiceMaster.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1355128/giraph/trunk/src/main/java/org/apache/giraph/bsp/CentralizedServiceMaster.java
+END
+BspInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/BspInputFormat.java
+END
+ApplicationState.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/bsp/ApplicationState.java
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/asf/!svn/ver/1355113/giraph/trunk/src/test/java/org/apache/giraph/examples
+END
+SimpleShortestPathsVertexTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1352647/giraph/trunk/src/test/java/org/apache/giraph/examples/SimpleShortestPathsVertexTest.java
+END
+TryMultiRpcBindingPortsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/test/java/org/apache/giraph/examples/TryMultiRpcBindingPortsTest.java
+END
+MinimumIntCombinerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/test/java/org/apache/giraph/examples/MinimumIntCombinerTest.java
+END
+ConnectedComponentsVertexTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/test/java/org/apache/giraph/examples/ConnectedComponentsVertexTest.java
+END
+SimpleTriangleClosingVertexTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1355113/giraph/trunk/src/test/java/org/apache/giraph/examples/SimpleTriangleClosingVertexTest.java
+END

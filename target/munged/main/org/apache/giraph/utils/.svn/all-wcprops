@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils
+END
+MemoryUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/MemoryUtils.java
+END
+EmptyIterable.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/EmptyIterable.java
+END
+ComparisonUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/ComparisonUtils.java
+END
+ReflectionUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/ReflectionUtils.java
+END
+FileUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/FileUtils.java
+END
+UnmodifiableIntArrayIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/UnmodifiableIntArrayIterator.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/package-info.java
+END
+InternalVertexRunner.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/InternalVertexRunner.java
+END
+WritableUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/utils/WritableUtils.java
+END

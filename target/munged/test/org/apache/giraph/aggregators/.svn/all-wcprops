@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators
+END
+TestFloatAggregators.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators/TestFloatAggregators.java
+END
+TestIntAggregators.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators/TestIntAggregators.java
+END
+TestLongAggregators.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators/TestLongAggregators.java
+END
+TestDoubleAggregators.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators/TestDoubleAggregators.java
+END
+TestBooleanAggregators.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/test/java/org/apache/giraph/aggregators/TestBooleanAggregators.java
+END

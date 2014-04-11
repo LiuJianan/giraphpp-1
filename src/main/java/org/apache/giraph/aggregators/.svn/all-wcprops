@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators
+END
+IntMinAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/IntMinAggregator.java
+END
+BooleanOverwriteAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/BooleanOverwriteAggregator.java
+END
+FloatAverageAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatAverageAggregator.java
+END
+DoubleMinAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleMinAggregator.java
+END
+IntProductAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/IntProductAggregator.java
+END
+DoubleProductAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleProductAggregator.java
+END
+IntOverwriteAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/IntOverwriteAggregator.java
+END
+IntSumAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/IntSumAggregator.java
+END
+DoubleSumAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleSumAggregator.java
+END
+DoubleOverwriteAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleOverwriteAggregator.java
+END
+LongMinAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/LongMinAggregator.java
+END
+FloatMinAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatMinAggregator.java
+END
+IntMaxAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/IntMaxAggregator.java
+END
+LongProductAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/LongProductAggregator.java
+END
+FloatProductAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatProductAggregator.java
+END
+DoubleMaxAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleMaxAggregator.java
+END
+BooleanAndAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/BooleanAndAggregator.java
+END
+LongOverwriteAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/LongOverwriteAggregator.java
+END
+FloatOverwriteAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatOverwriteAggregator.java
+END
+LongSumAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/LongSumAggregator.java
+END
+FloatSumAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatSumAggregator.java
+END
+DoubleAverageAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/DoubleAverageAggregator.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/package-info.java
+END
+BooleanOrAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/BooleanOrAggregator.java
+END
+LongMaxAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/LongMaxAggregator.java
+END
+FloatMaxAggregator.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1352585/giraph/trunk/src/main/java/org/apache/giraph/aggregators/FloatMaxAggregator.java
+END

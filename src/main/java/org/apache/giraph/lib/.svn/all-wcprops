@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/asf/!svn/ver/1352647/giraph/trunk/src/main/java/org/apache/giraph/lib
+END
+SequenceFileVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1343974/giraph/trunk/src/main/java/org/apache/giraph/lib/SequenceFileVertexInputFormat.java
+END
+TextVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/TextVertexInputFormat.java
+END
+AdjacencyListTextVertexOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/AdjacencyListTextVertexOutputFormat.java
+END
+AdjacencyListVertexReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/AdjacencyListVertexReader.java
+END
+TextVertexOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/TextVertexOutputFormat.java
+END
+TextDoubleDoubleAdjacencyListVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/TextDoubleDoubleAdjacencyListVertexInputFormat.java
+END
+JsonBase64VertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/JsonBase64VertexInputFormat.java
+END
+IdWithValueTextOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/IdWithValueTextOutputFormat.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/package-info.java
+END
+LongDoubleDoubleAdjacencyListVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/LongDoubleDoubleAdjacencyListVertexInputFormat.java
+END
+JsonLongDoubleFloatDoubleVertexInputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1352647/giraph/trunk/src/main/java/org/apache/giraph/lib/JsonLongDoubleFloatDoubleVertexInputFormat.java
+END
+JsonLongDoubleFloatDoubleVertexOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1352647/giraph/trunk/src/main/java/org/apache/giraph/lib/JsonLongDoubleFloatDoubleVertexOutputFormat.java
+END
+JsonBase64VertexOutputFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/JsonBase64VertexOutputFormat.java
+END
+JsonBase64VertexFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1342345/giraph/trunk/src/main/java/org/apache/giraph/lib/JsonBase64VertexFormat.java
+END
