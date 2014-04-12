@@ -31,8 +31,7 @@ public class CoarseningText {
 			sb.append(state + " " + val + " " + num);
 			for(int i = 0 ; i < num ; i ++)
 			{
-				sb.append(" ");
-				sb.append(value.getEdgeID(i));
+				sb.append(" " + value.getEdgeID(i) + " "  + value.getEdgeValue(i));
 			}
 			 
 			context.write(new LongWritable(VertexID), new Text(sb.toString()));
