@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -23,10 +23,10 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.mortbay.log.Log;
 
-import com.ibm.giraph.formats.binary.KVBinaryInputFormat;
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.LongLongNullNeighborhood;
-import com.ibm.giraph.subgraph.example.LongTotalOrderPartiitoner;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.LongLongNullNeighborhood;
+import com.ibm.giraph.graph.example.LongTotalOrderPartiitoner;
 
 public class FinalPartitionMapping implements Tool {
 

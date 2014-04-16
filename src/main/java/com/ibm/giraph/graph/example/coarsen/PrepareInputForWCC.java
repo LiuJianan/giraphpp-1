@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.IOException;
 
@@ -14,22 +14,22 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.mortbay.log.Log;
 
-import com.ibm.giraph.formats.binary.KVBinaryInputFormat;
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.LongParMetisVertexValueLongMNeighborhood;
-import com.ibm.giraph.formats.binary.SkeletonNeighborhood;
-import com.ibm.giraph.subgraph.io.StanfordReader;
-import com.ibm.giraph.subgraph.io.StanfordReader.InnerReducer;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.LongCoarsenVertexValueLongMNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.SkeletonNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.StanfordReader;
+import com.ibm.giraph.graph.example.ioformats.StanfordReader.InnerReducer;
 
 public class PrepareInputForWCC implements Tool {
 
 	private Configuration conf;
 	
-	static class MyMapper extends Mapper<LongWritable, LongParMetisVertexValueLongMNeighborhood, 
+	static class MyMapper extends Mapper<LongWritable, LongCoarsenVertexValueLongMNeighborhood, 
 	LongWritable, LongWritable>
 	{
 		LongWritable buff=new LongWritable();
-		protected void map(LongWritable key, LongParMetisVertexValueLongMNeighborhood value, Context context)
+		protected void map(LongWritable key, LongCoarsenVertexValueLongMNeighborhood value, Context context)
 		throws IOException, InterruptedException 
 		{
 		//	Log.info("mapper input: "+key+" "+value.getVertexValue());
@@ -54,7 +54,7 @@ public class PrepareInputForWCC implements Tool {
 		job.setMapOutputKeyClass(LongWritable.class);
 		job.setMapOutputValueClass(LongWritable.class);
 		job.setInputFormatClass(KVBinaryInputFormat.class);
-		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongParMetisVertexValueLongMNeighborhood.class);
+		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongCoarsenVertexValueLongMNeighborhood.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileInputFormat.addInputPath(job, new Path(args[1]));
 		Path outpath = new Path(args[2]);

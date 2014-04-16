@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +16,8 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.TaskAttemptID;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.LongParMetisVertexValueLongMNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.LongCoarsenVertexValueLongMNeighborhood;
 import com.ibm.giraph.utils.MapRedudeUtils;
 
 public class MapMetisResultsBack {
@@ -59,21 +59,21 @@ public class MapMetisResultsBack {
 	public void Remap(String oldmapfile, String newmapfile) throws IOException, InterruptedException
 	{
 		LongWritable key=new LongWritable();
-		LongParMetisVertexValueLongMNeighborhood value=new LongParMetisVertexValueLongMNeighborhood();
+		LongCoarsenVertexValueLongMNeighborhood value=new LongCoarsenVertexValueLongMNeighborhood();
 		BufferedReader in= new BufferedReader(new InputStreamReader(FileSystem.get(new Job().getConfiguration()).open(new Path(oldmapfile))));
-		KVBinaryOutputFormat<LongParMetisVertexValueLongMNeighborhood> outformat
-		=new KVBinaryOutputFormat<LongParMetisVertexValueLongMNeighborhood>();
+		KVBinaryOutputFormat<LongCoarsenVertexValueLongMNeighborhood> outformat
+		=new KVBinaryOutputFormat<LongCoarsenVertexValueLongMNeighborhood>();
 		
 		Job job = new Job();
 		job.setOutputFormatClass(KVBinaryOutputFormat.class);
 		job.setOutputKeyClass(LongWritable.class);
-		job.setOutputValueClass(LongParMetisVertexValueLongMNeighborhood.class);
-		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(), LongParMetisVertexValueLongMNeighborhood.class);
+		job.setOutputValueClass(LongCoarsenVertexValueLongMNeighborhood.class);
+		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(), LongCoarsenVertexValueLongMNeighborhood.class);
 		Path outpath=new Path(newmapfile);
 		FileOutputFormat.setOutputPath(job, outpath);
 		MapRedudeUtils.deleteFileIfExistOnHDFS(outpath, job.getConfiguration());
 		TaskAttemptContext context=new TaskAttemptContext(job.getConfiguration(), new TaskAttemptID());
-		RecordWriter<LongWritable, LongParMetisVertexValueLongMNeighborhood> writer
+		RecordWriter<LongWritable, LongCoarsenVertexValueLongMNeighborhood> writer
 		=outformat.getRecordWriter(context);
 		
 		String line;

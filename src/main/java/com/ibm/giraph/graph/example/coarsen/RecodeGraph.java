@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -29,9 +29,9 @@ import org.apache.mahout.math.map.OpenIntIntHashMap;
 import org.apache.mahout.math.map.OpenLongLongHashMap;
 import org.mortbay.log.Log;
 
-import com.ibm.giraph.formats.binary.KVBinaryInputFormat;
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.SkeletonNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.SkeletonNeighborhood;
 
 public class RecodeGraph implements Tool {
 

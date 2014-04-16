@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,11 +26,11 @@ import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.math.map.OpenLongIntHashMap;
 import org.mortbay.log.Log;
 
-import com.ibm.giraph.formats.binary.KVBinaryInputFormat;
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.LongLongNullNeighborhood;
-import com.ibm.giraph.formats.binary.LongParMetisVertexValueLongMNeighborhood;
-import com.ibm.giraph.subgraph.example.coarsen.PrepareMetisInputGraph.Counters;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.LongLongNullNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.LongCoarsenVertexValueLongMNeighborhood;
+import com.ibm.giraph.graph.example.coarsen.PrepareMetisInputGraph.Counters;
 import com.ibm.giraph.utils.MapRedudeUtils;
 
 public class AssignPartitionToOrphanNodes implements Tool {
@@ -40,13 +40,13 @@ public class AssignPartitionToOrphanNodes implements Tool {
 	
 	protected static enum Counters {ORPHAN_NODES, NUM_OUTPUT_NODES, NUM_OUTPUT_EDGES };
 	
-	static class MyMapper extends Mapper<LongWritable, LongParMetisVertexValueLongMNeighborhood, 
+	static class MyMapper extends Mapper<LongWritable, LongCoarsenVertexValueLongMNeighborhood, 
 	LongWritable, LongLongNullNeighborhood>
 	{
 		LongLongNullNeighborhood outValue=new LongLongNullNeighborhood();
 		Random rand=new Random(System.currentTimeMillis());
 		private int numParts;
-		protected void map(LongWritable key, LongParMetisVertexValueLongMNeighborhood value, Context context)
+		protected void map(LongWritable key, LongCoarsenVertexValueLongMNeighborhood value, Context context)
 		throws IOException, InterruptedException 
 		{
 			if(value.getVertexValue().state!=2 && (value.getVertexValue().value==1 && value.getNumberEdges()==0))
@@ -79,7 +79,7 @@ public class AssignPartitionToOrphanNodes implements Tool {
 		FileOutputFormat.setOutputPath(job, outpath);
 		MapRedudeUtils.deleteFileIfExistOnHDFS(outpath, job.getConfiguration());
 		job.setInputFormatClass(KVBinaryInputFormat.class);
-		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongParMetisVertexValueLongMNeighborhood.class);
+		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongCoarsenVertexValueLongMNeighborhood.class);
 		job.setJarByClass(AssignPartitionToOrphanNodes.class);		
 		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(), LongLongNullNeighborhood.class);
 		job.setOutputFormatClass(KVBinaryOutputFormat.class);

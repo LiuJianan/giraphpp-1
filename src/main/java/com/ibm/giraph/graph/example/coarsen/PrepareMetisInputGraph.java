@@ -1,4 +1,4 @@
-package com.ibm.giraph.subgraph.example.coarsen;
+package com.ibm.giraph.graph.example.coarsen;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -33,11 +33,11 @@ import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.math.map.OpenLongIntHashMap;
 import org.mortbay.log.Log;
 
-import com.ibm.giraph.formats.binary.KVBinaryInputFormat;
-import com.ibm.giraph.formats.binary.KVBinaryOutputFormat;
-import com.ibm.giraph.formats.binary.LongLongNullNeighborhood;
-import com.ibm.giraph.formats.binary.LongParMetisVertexValueLongMNeighborhood;
-import com.ibm.giraph.subgraph.example.LongTotalOrderPartiitoner;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
+import com.ibm.giraph.graph.example.ioformats.LongLongNullNeighborhood;
+import com.ibm.giraph.graph.example.ioformats.LongCoarsenVertexValueLongMNeighborhood;
+import com.ibm.giraph.graph.example.LongTotalOrderPartiitoner;
 import com.ibm.giraph.utils.MapRedudeUtils;
 
 public class PrepareMetisInputGraph implements Tool {
@@ -46,11 +46,11 @@ public class PrepareMetisInputGraph implements Tool {
 	
 	protected static enum Counters {NUM_NODES, NUM_EDGES };
 	
-	static class MyMapper extends Mapper<LongWritable, LongParMetisVertexValueLongMNeighborhood, LongWritable, LongParMetisVertexValueLongMNeighborhood>
+	static class MyMapper extends Mapper<LongWritable, LongCoarsenVertexValueLongMNeighborhood, LongWritable, LongCoarsenVertexValueLongMNeighborhood>
 	{
 		long orphanNodes=0;
 		OpenLongIntHashMap map=new OpenLongIntHashMap();
-		protected void map(LongWritable key, LongParMetisVertexValueLongMNeighborhood value, Context context)
+		protected void map(LongWritable key, LongCoarsenVertexValueLongMNeighborhood value, Context context)
 		throws IOException, InterruptedException 
 		{
 			if(value.getVertexValue().state==2 || (value.getVertexValue().value==1 && value.getNumberEdges()==0))
@@ -79,6 +79,7 @@ public class PrepareMetisInputGraph implements Tool {
 			JobConf conf=new JobConf(context.getConfiguration());
 			try {
 				Path[] files=DistributedCache.getLocalCacheFiles(conf);
+				
 				for(Path file: files)
 				{
 					BufferedReader in = new BufferedReader(new FileReader(file.toString()));
@@ -96,21 +97,34 @@ public class PrepareMetisInputGraph implements Tool {
 		}
 	}
 	
-	static class MyReducer extends Reducer<LongWritable, LongParMetisVertexValueLongMNeighborhood, LongWritable, LongParMetisVertexValueLongMNeighborhood>
+	static class MyReducer extends Reducer<LongWritable, LongCoarsenVertexValueLongMNeighborhood, NullWritable, Text>
 	{
 		
 	//	Text textbuff=new Text();
 		int numNodes=0; 
 		int numEdges=0;
 	
-		public void reduce(LongWritable key, Iterable<LongParMetisVertexValueLongMNeighborhood> values, Context context) 
+		public void reduce(LongWritable key, Iterable<LongCoarsenVertexValueLongMNeighborhood> values, Context context) 
 		throws IOException, InterruptedException 
 		{
 			numNodes++;
-			LongParMetisVertexValueLongMNeighborhood value=values.iterator().next();
+			LongCoarsenVertexValueLongMNeighborhood value=values.iterator().next();
 				
-			context.write(key, value);
+			//context.write(key, value);
 			numEdges+=value.getNumberEdges();
+			
+			int num = value.getNumberEdges();
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(value.getVertexValue().value + " ");
+			for(int i = 0 ; i < num ; i ++)
+			{
+				if(i != 0)
+					sb.append(" ");
+				sb.append(value.getEdgeID(i) + " "  + value.getEdgeValue(i));
+			}
+			
+			context.write(NullWritable.get(), new Text(sb.toString()));
 			if(values.iterator().hasNext())
 				throw new IOException("multiple nodes have the same id: "+key);
 		//	Log.info("reducer: "+nbhd);
@@ -136,25 +150,24 @@ public class PrepareMetisInputGraph implements Tool {
 		job.setJobName(this.getClass().getName());
 		job.setMapperClass(MyMapper.class);
 		job.setMapOutputKeyClass(LongWritable.class);
-		job.setMapOutputValueClass(LongParMetisVertexValueLongMNeighborhood.class);
+		job.setMapOutputValueClass(LongCoarsenVertexValueLongMNeighborhood.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		
 		Path outpath=new Path(args[2]);
 		FileOutputFormat.setOutputPath(job, outpath);
 		MapRedudeUtils.deleteFileIfExistOnHDFS(outpath, job.getConfiguration());
 		job.setInputFormatClass(KVBinaryInputFormat.class);
-		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongParMetisVertexValueLongMNeighborhood.class);
+		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongCoarsenVertexValueLongMNeighborhood.class);
 		//job.setReducerClass(MyReducer.class);
 		job.setJarByClass(PrepareMetisInputGraph.class);
 		JobConf conf=new JobConf(job.getConfiguration());
 		DistributedCache.addCacheFile(new URI(args[1]+"/part-r-00000"), conf);
 		
 		job=new Job(conf);
-		
-		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(), LongParMetisVertexValueLongMNeighborhood.class);
-		job.setOutputFormatClass(KVBinaryOutputFormat.class);
-		job.setOutputKeyClass(LongWritable.class);
-		job.setOutputValueClass(LongParMetisVertexValueLongMNeighborhood.class);
+		job.setReducerClass(MyReducer.class);
+		//job.setOutputKeyClass(LongWritable.class);
+		job.setOutputKeyClass(NullWritable.class);
+		job.setOutputValueClass(Text.class);
 		job.setNumReduceTasks(Integer.parseInt(args[4]));
 		
 		job.setPartitionerClass(LongTotalOrderPartiitoner.class);
