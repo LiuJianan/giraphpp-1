@@ -4,7 +4,7 @@ GRAPH=enron_undirected
 INPUT_GRAPH=/giraphpp/$GRAPH
 NUM_PARTITIONS=15
 NUM_REDUCERS=15
-NUM_NODES=16343
+NUM_NODES=69244
 
 OUTPUT_GRAPH=$INPUT_GRAPH.recoded
 COARSEN_GRAPH=$INPUT_GRAPH.coarsen
@@ -46,5 +46,5 @@ hadoop jar /usr/local/giraphpp/target/giraph-0.2-SNAPSHOT-jar-with-dependencies.
 hadoop jar /usr/local/giraphpp/target/giraph-0.2-SNAPSHOT-jar-with-dependencies.jar com.ibm.giraph.graph.example.coarsen.FinalPartitionMapping $WCC_OUT $ORPHANS $NODE_MAPPNG $BREAKPOINTS $NUM_PARTITIONS $NUM_REDUCERS
 
 
-#hadoop jar /usr/local/giraphpp/target/giraph-0.2-SNAPSHOT-jar-with-dependencies.jar com.ibm.giraph.graph.example.coarsen.RecodeGraph $INPUT_GRAPH $NODE_MAPPNG $OUTPUT_GRAPH $NUM_NODES
+hadoop jar /usr/local/giraphpp/target/giraph-0.2-SNAPSHOT-jar-with-dependencies.jar com.ibm.giraph.graph.example.coarsen.RecodeGraph $INPUT_GRAPH $NODE_MAPPNG $OUTPUT_GRAPH $NUM_NODES
 
