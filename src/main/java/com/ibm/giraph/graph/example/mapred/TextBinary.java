@@ -1,8 +1,9 @@
 package com.ibm.giraph.graph.example.mapred;
 
 import java.io.*;
+import java.util.Vector;
 
-import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
 import com.ibm.giraph.graph.example.ioformats.SkeletonNeighborhood;
 
 import org.apache.hadoop.conf.Configuration;
@@ -11,35 +12,37 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.*;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.*;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class BinaryText {
+public class TextBinary {
 	public static class SMapper extends
-			Mapper<LongWritable, SkeletonNeighborhood, LongWritable, Text> {
+			Mapper<LongWritable, Text, LongWritable, SkeletonNeighborhood> {
 
-		public void map(LongWritable key, SkeletonNeighborhood value, Context context)
+		public void map(LongWritable key, Text value, Context context)
 				throws IOException, InterruptedException {
 			
-			long VertexID = key.get();
-			int num = value.getNumberEdges();
+			SkeletonNeighborhood val = new SkeletonNeighborhood();
 			
-			StringBuilder sb = new StringBuilder();
-			sb.append(num);
-			for(int i = 0 ; i < num ; i ++)
+			Vector<Long> edges = new Vector<Long>();
+			
+			String[] nbs = value.toString().split("\\s+");
+			
+			for(int i = 2 ; i < nbs.length ; i ++)
 			{
-				sb.append(" ");
-				sb.append(value.getEdgeID(i));
+				edges.add( Long.parseLong(nbs[i]) );
 			}
+			
+			val.setSimpleEdges(edges);
 			 
-			context.write(new LongWritable(VertexID), new Text(sb.toString()));
+			context.write(new LongWritable(Long.parseLong(nbs[0])), val);
 			
 		}
 	}
 
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		Job job = new Job(conf, "BinaryText");
+		Job job = new Job(conf, "TextBinary");
 		String[] otherArgs = new GenericOptionsParser(conf, args)
 				.getRemainingArgs();
 		if (otherArgs.length != 2) {
@@ -47,15 +50,21 @@ public class BinaryText {
 			System.exit(2);
 		}
 		
-		job.setJarByClass(BinaryText.class);
+		job.setJarByClass(TextBinary.class);
 		
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job,new Path(args[1]));
 		job.setMapperClass(SMapper.class);
+		
+		job.setInputFormatClass(TextInputFormat.class);
+		
+		
+		job.setOutputFormatClass(KVBinaryOutputFormat.class);
 		job.setMapOutputKeyClass(LongWritable.class);
-		job.setMapOutputValueClass(Text.class);
-		job.setInputFormatClass(KVBinaryInputFormat.class);
-		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), SkeletonNeighborhood.class);
+		job.setMapOutputValueClass(SkeletonNeighborhood.class);
+		
+		job.setOutputKeyClass(LongWritable.class);
+		job.setOutputValueClass(SkeletonNeighborhood.class);
 		
 		job.setNumReduceTasks(0);
 		

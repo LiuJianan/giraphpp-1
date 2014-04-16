@@ -41,7 +41,7 @@ public class CoarseningText {
 
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		Job job = new Job(conf, "CoarseningPartitionInterval");
+		Job job = new Job(conf, "CoarseningText");
 		String[] otherArgs = new GenericOptionsParser(conf, args)
 				.getRemainingArgs();
 		if (otherArgs.length != 2) {
@@ -54,7 +54,7 @@ public class CoarseningText {
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job,new Path(args[1]));
 		job.setMapperClass(SMapper.class);
-		job.setMapOutputKeyClass(LongWritable.class);
+		job.setMapOutputKeyClass(TextInputFormat.class);
 		job.setMapOutputValueClass(Text.class);
 		job.setInputFormatClass(KVBinaryInputFormat.class);
 		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), LongCoarsenVertexValueLongMNeighborhood.class);
