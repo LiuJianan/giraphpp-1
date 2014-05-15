@@ -1,6 +1,5 @@
 package com.ibm.giraph.graph.example.mapred;
 
-
 import java.io.*;
 import java.util.Vector;
 
@@ -24,38 +23,39 @@ public class TextBinaryEdgeValueMerge {
 
 		public void map(LongWritable key, Text value, Context context)
 				throws IOException, InterruptedException {
-			
+
 			String[] tokens = value.toString().split("\\s+");
-			
+
 			context.write(new LongWritable(Long.parseLong(tokens[0])), value);
-			
+
 		}
 	}
-    public static class SReducer extends
+
+	public static class SReducer
+			extends
 			Reducer<LongWritable, Text, LongWritable, LongDoubleDoubleNeighborhood> {
 
-		public void reduce(LongWritable key, Iterable<Text> values, Context context)
-				throws IOException, InterruptedException {
-			
+		public void reduce(LongWritable key, Iterable<Text> values,
+				Context context) throws IOException, InterruptedException {
+
 			LongDoubleDoubleNeighborhood val = new LongDoubleDoubleNeighborhood();
-			
-			
+
 			String[] nbs = values.iterator().next().toString().split("\\s+");
-			int numofEdges =  Integer.parseInt(nbs[1]);
+			int numofEdges = Integer.parseInt(nbs[1]);
 			long[] edges = new long[numofEdges];
 			double[] edgeValues = new double[numofEdges];
-			for(int i = 0 ; i < numofEdges ; i ++)
-			{
-				edges[i] =Long.parseLong(nbs[2*i+2]);
-				edgeValues[i] =Long.parseLong(nbs[2*i+3]);
+			for (int i = 0; i < numofEdges; i++) {
+				edges[i] = Long.parseLong(nbs[2 * i + 2]);
+				edgeValues[i] = Double.parseDouble(nbs[2 * i + 3]);
 			}
-			
+
 			val.setSimpleEdges(edges, edgeValues);
-			 
+
 			context.write(new LongWritable(Long.parseLong(nbs[0])), val);
-			
+
 		}
 	}
+
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
 		Job job = new Job(conf, "TextBinaryMerge");
@@ -65,25 +65,25 @@ public class TextBinaryEdgeValueMerge {
 			System.err.println("Args: <in> <out> <num>");
 			System.exit(3);
 		}
-		
+
 		job.setJarByClass(TextBinaryEdgeValueMerge.class);
-		
+
 		FileInputFormat.addInputPath(job, new Path(args[0]));
-		FileOutputFormat.setOutputPath(job,new Path(args[1]));
-		
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
 		job.setMapperClass(SMapper.class);
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setMapOutputKeyClass(LongWritable.class);// cnt
 		job.setMapOutputValueClass(Text.class);// vid
-		
+
 		job.setReducerClass(SReducer.class);
-		
+
 		job.setOutputFormatClass(KVBinaryOutputFormat.class);
 		job.setOutputKeyClass(LongWritable.class);
 		job.setOutputValueClass(LongDoubleDoubleNeighborhood.class);
-		
+
 		job.setNumReduceTasks(Integer.parseInt(args[2]));
-		
+
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 }
