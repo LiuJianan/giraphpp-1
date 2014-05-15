@@ -16,6 +16,7 @@ public class MinCombiner extends VertexCombiner<LongWritable, DoubleWritable>
 		for (DoubleWritable w : messages)
 		{
 			sum = Math.min(sum, w.get());
+			System.out.println("In minCombiner: " + sum + " " + w.get());
 		}
 		return (Iterable<DoubleWritable>) new UnmodifiableSingleItem<DoubleWritable>(new DoubleWritable(sum));
 	}
