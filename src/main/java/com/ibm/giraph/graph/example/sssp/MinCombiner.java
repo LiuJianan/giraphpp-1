@@ -12,7 +12,7 @@ public class MinCombiner extends VertexCombiner<LongWritable, DoubleWritable>
 	@Override
 	public Iterable<DoubleWritable> combine(LongWritable vertexIndex,
 			Iterable<DoubleWritable> messages) throws IOException {
-		double sum=0;
+		double sum=Double.MAX_VALUE;
 		for (DoubleWritable w : messages)
 		{
 			sum = Math.min(sum, w.get());
