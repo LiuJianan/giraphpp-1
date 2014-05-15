@@ -53,10 +53,8 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 
 		    int n=value.getNumberEdges();
 		    Map<LongWritable, DoubleWritable> edges = Maps.newHashMap();
-		    System.out.println("### vid: " + vertexId + " numEdges: " + n);
 			for(int i=0; i<n; i++)
 			{
-				System.out.print("    ---- " + value.getEdgeID(i) + " " + value.getEdgeValueByIndex(i));
 				edges.put(new LongWritable(value.getEdgeID(i)), new DoubleWritable(value.getEdgeValueByIndex(i)));
 			}
 
