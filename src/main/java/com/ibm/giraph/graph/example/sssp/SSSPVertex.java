@@ -65,14 +65,16 @@ implements Tool {
 		double minDist = isSource() ? 0d : Double.MAX_VALUE;
 		
 		while(msgs.hasNext()) {
-		    minDist = Math.min(minDist, msgs.next().get());
+			double v = msgs.next().get();
+			System.out.println( " vid: " + this.getVertexId() + " msg: " +  v);
+		    minDist = Math.min(minDist, v);
 		}
-		System.out.println("###  step: " + this.getSuperstep() + " mindist " + minDist);
+		System.out.println("!!!  step: " + this.getSuperstep() + " mindist " + minDist);
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
 		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
-		    	System.out.println("###  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) + " dis: " + getSimpleEdgeValue(i));
+		    	System.out.println("~~~  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) + " dis: " + getSimpleEdgeValue(i));
 		    	sendMsg(this.getEdgeID(i), new DoubleWritable(distance));
 		    }
 		}
