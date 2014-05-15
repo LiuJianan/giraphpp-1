@@ -58,14 +58,16 @@ implements Tool {
 		System.out.println("###  step: " + this.getSuperstep() + " vid: " + this.getVertexId());
 		
 		if (getSuperstep() == 0) {
+			System.out.println("set " + this.getVertexId() +" to " +Double.MAX_VALUE );
 		    setVertexValue(new DoubleWritable(Double.MAX_VALUE));
+		    System.out.println(" vid: "+ this.getVertexId() + " val " + this.getVertexValueSimpleType());
 		}
 		double minDist = isSource() ? 0d : Double.MAX_VALUE;
 		
 		while(msgs.hasNext()) {
 		    minDist = Math.min(minDist, msgs.next().get());
 		}
-
+		System.out.println("###  step: " + this.getSuperstep() + " mindist " + minDist);
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
 		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
