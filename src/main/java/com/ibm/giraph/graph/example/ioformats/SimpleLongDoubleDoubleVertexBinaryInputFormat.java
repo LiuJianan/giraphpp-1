@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.giraph.graph.BasicVertex;
 import org.apache.giraph.graph.BspUtils;
+import org.apache.giraph.graph.LongDoubleDoubleDoubleVertex;
 import org.apache.giraph.graph.VertexInputFormat;
 import org.apache.giraph.graph.VertexReader;
 import org.apache.hadoop.conf.Configuration;
@@ -42,14 +43,14 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 		@Override
 		public BasicVertex<LongWritable, DoubleWritable, DoubleWritable, M> getCurrentVertex()
 				throws IOException, InterruptedException {
-			
+
 			Configuration conf = context.getConfiguration();
 		    BasicVertex<LongWritable, DoubleWritable, DoubleWritable, M> vertex = BspUtils.createVertex(conf);
-		    
+
 		    LongWritable vertexId = new LongWritable(reader.getCurrentKey().get());
 		    LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> value=reader.getCurrentValue();
 		    DoubleWritable vertexValue=new DoubleWritable(Double.MAX_VALUE);
-		    
+
 		    int n=value.getNumberEdges();
 		    Map<LongWritable, DoubleWritable> edges = Maps.newHashMap();
 		    System.out.println("### vid: " + vertexId + " numEdges: " + n);
@@ -58,10 +59,9 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 				System.out.print("    ---- " + value.getEdgeID(i) + " " + value.getEdgeValueByIndex(i));
 				edges.put(new LongWritable(value.getEdgeID(i)), new DoubleWritable(value.getEdgeValueByIndex(i)));
 			}
-			
+
 		    vertex.initialize(vertexId, vertexValue, edges, null);
-		    
-		    System.out.println("\n### vid: numofEdges " + vertex.getNumEdges() );
+
 		    return vertex;
 		}
 		
