@@ -55,10 +55,13 @@ implements Tool {
 	}
 	@Override
 	public void compute(Iterator<DoubleWritable> msgs) throws IOException {
+		System.out.println("###  step: " + this.getSuperstep() + " vid: " + this.getVertexId());
+		
 		if (getSuperstep() == 0) {
 		    setVertexValue(new DoubleWritable(Double.MAX_VALUE));
 		}
 		double minDist = isSource() ? 0d : Double.MAX_VALUE;
+		
 		while(msgs.hasNext()) {
 		    minDist = Math.min(minDist, msgs.next().get());
 		}
@@ -67,7 +70,7 @@ implements Tool {
 			setVertexValue(new DoubleWritable(minDist));
 		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
-		    	System.out.println("### vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) + " dis: " + getSimpleEdgeValue(i));
+		    	System.out.println("###  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) + " dis: " + getSimpleEdgeValue(i));
 		    	sendMsg(this.getEdgeID(i), new DoubleWritable(distance));
 		    }
 		}
