@@ -59,7 +59,6 @@ implements Tool {
 		if (getSuperstep() == 0) {
 		    setVertexValue(new DoubleWritable(Double.MAX_VALUE));
 		}
-		System.out.println("step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " value: " + this.getVertexValue());
 		double minDist = isSource() ? 0d : Double.MAX_VALUE;
 		
 		while(msgs.hasNext()) {
