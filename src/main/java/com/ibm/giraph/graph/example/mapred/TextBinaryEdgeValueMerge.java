@@ -7,6 +7,7 @@ import java.util.Vector;
 import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
 import com.ibm.giraph.graph.example.ioformats.SkeletonNeighborhood;
 
+import org.apache.giraph.graph.LongDoubleDoubleNeighborhood;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 import org.apache.hadoop.io.*;
@@ -17,7 +18,7 @@ import org.apache.hadoop.mapreduce.lib.input.*;
 import org.apache.hadoop.mapreduce.lib.output.*;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class TextBinaryMerge {
+public class TextBinaryEdgeValueMerge {
 	public static class SMapper extends
 			Mapper<LongWritable, Text, LongWritable, Text> {
 
@@ -31,23 +32,25 @@ public class TextBinaryMerge {
 		}
 	}
     public static class SReducer extends
-			Reducer<LongWritable, Text, LongWritable, SkeletonNeighborhood> {
+			Reducer<LongWritable, Text, LongWritable, LongDoubleDoubleNeighborhood> {
 
 		public void reduce(LongWritable key, Iterable<Text> values, Context context)
 				throws IOException, InterruptedException {
 			
-			SkeletonNeighborhood val = new SkeletonNeighborhood();
+			LongDoubleDoubleNeighborhood val = new LongDoubleDoubleNeighborhood();
 			
-			Vector<Long> edges = new Vector<Long>();
 			
 			String[] nbs = values.iterator().next().toString().split("\\s+");
 			
-			for(int i = 2 ; i < nbs.length ; i ++)
+			long[] edges = new long[Integer.parseInt(nbs[1])];
+			double[] edgeValues = new double[edges.length];
+			for(int i = 2 ; i < nbs.length ; i +=2)
 			{
-				edges.add( Long.parseLong(nbs[i]) );
+				edges[i] =Long.parseLong(nbs[i]);
+				edgeValues[i] =Long.parseLong(nbs[i+1]);
 			}
 			
-			val.setSimpleEdges(edges);
+			val.setSimpleEdges(edges, edgeValues);
 			 
 			context.write(new LongWritable(Long.parseLong(nbs[0])), val);
 			
@@ -63,7 +66,7 @@ public class TextBinaryMerge {
 			System.exit(3);
 		}
 		
-		job.setJarByClass(TextBinaryMerge.class);
+		job.setJarByClass(TextBinaryEdgeValueMerge.class);
 		
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job,new Path(args[1]));
@@ -77,7 +80,7 @@ public class TextBinaryMerge {
 		
 		job.setOutputFormatClass(KVBinaryOutputFormat.class);
 		job.setOutputKeyClass(LongWritable.class);
-		job.setOutputValueClass(SkeletonNeighborhood.class);
+		job.setOutputValueClass(LongDoubleDoubleNeighborhood.class);
 		
 		job.setNumReduceTasks(Integer.parseInt(args[2]));
 		
