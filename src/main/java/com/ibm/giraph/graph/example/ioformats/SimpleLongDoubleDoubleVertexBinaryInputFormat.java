@@ -27,15 +27,15 @@ import org.apache.giraph.graph.LongDoubleDoubleNeighborhood;
 public class SimpleLongDoubleDoubleVertexBinaryInputFormat <M extends Writable> 
 extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 	
+	
+	protected KVBinaryInputFormat<LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> > inputFormat= new KVBinaryInputFormat<LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> >();
 	public static final Class<? extends Neighborhood> NEIGHBORHOOD_CLASS=LongDoubleDoubleNeighborhood.class;
 	
-	protected KVBinaryInputFormat<LongDoubleDoubleNeighborhood> inputFormat= new KVBinaryInputFormat<LongDoubleDoubleNeighborhood>(); 
-	
 	public static class SimpleVertexBinaryReader<M extends Writable> 
-	extends SimpleVertexBinaryReaderBase<DoubleWritable, DoubleWritable, M, LongDoubleDoubleNeighborhood>
+	extends SimpleVertexBinaryReaderBase<DoubleWritable, DoubleWritable, M, LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> >
 	{
 		public SimpleVertexBinaryReader(
-				RecordReader<LongWritable, LongDoubleDoubleNeighborhood> basereader) {
+				RecordReader<LongWritable, LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> > basereader) {
 			super(basereader);
 		}
 
@@ -47,14 +47,16 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 		    BasicVertex<LongWritable, DoubleWritable, DoubleWritable, M> vertex = BspUtils.createVertex(conf);
 		    
 		    LongWritable vertexId = new LongWritable(reader.getCurrentKey().get());
-		    LongDoubleDoubleNeighborhood value=reader.getCurrentValue();
-		    DoubleWritable vertexValue=new DoubleWritable();
+		    LongDoubleDoubleNeighborhood<LongWritable,DoubleWritable> value=reader.getCurrentValue();
+		    DoubleWritable vertexValue=new DoubleWritable(Double.MAX_VALUE);
 		    
 		    int n=value.getNumberEdges();
 		    Map<LongWritable, DoubleWritable> edges = Maps.newHashMap();
+		    System.out.print("### vid: " + vertexId + " numEdges: " + n);
 			for(int i=0; i<n; i++)
-				edges.put(new LongWritable(value.getEdgeID(i)), 
-						new DoubleWritable(value.getEdgeValueByIndex(i)));
+			{
+				edges.put(new LongWritable(value.getEdgeID(i)), new DoubleWritable(value.getEdgeValueByIndex(i)));
+			}
 		    vertex.initialize(vertexId, vertexValue, edges, null);
 		    return vertex;
 		}

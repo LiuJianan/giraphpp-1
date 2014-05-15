@@ -66,7 +66,7 @@ implements Tool {
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
 			
-			System.out.print("id: " + this.getVertexId().toString() +" " + this.getNumEdges());
+			System.out.print("????  id: " + this.getVertexId().toString() +" " + this.getNumEdges());
 			
 		    for (int i = 0 ;i <  this.getNumEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
