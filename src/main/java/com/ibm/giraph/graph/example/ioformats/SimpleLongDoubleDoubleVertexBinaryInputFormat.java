@@ -52,12 +52,16 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 		    
 		    int n=value.getNumberEdges();
 		    Map<LongWritable, DoubleWritable> edges = Maps.newHashMap();
-		    System.out.print("### vid: " + vertexId + " numEdges: " + n);
+		    System.out.println("### vid: " + vertexId + " numEdges: " + n);
 			for(int i=0; i<n; i++)
 			{
+				System.out.print("    ---- " + value.getEdgeID(i) + " " + value.getEdgeValueByIndex(i));
 				edges.put(new LongWritable(value.getEdgeID(i)), new DoubleWritable(value.getEdgeValueByIndex(i)));
 			}
+			
 		    vertex.initialize(vertexId, vertexValue, edges, null);
+		    
+		    System.out.println("\n### vid: numofEdges " + vertex.getNumEdges() );
 		    return vertex;
 		}
 		
