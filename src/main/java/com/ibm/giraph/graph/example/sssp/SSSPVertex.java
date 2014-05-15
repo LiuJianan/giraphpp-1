@@ -66,7 +66,7 @@ implements Tool {
 		
 		while(msgs.hasNext()) {
 			double v = msgs.next().get();
-			System.out.println( " vid: " + this.getVertexId() + " msg: " +  v);
+			System.out.println( "*** vid: " + this.getVertexId() + " msg: " +  v);
 		    minDist = Math.min(minDist, v);
 		}
 		System.out.println("!!!  step: " + this.getSuperstep() + " mindist " + minDist);
@@ -74,7 +74,7 @@ implements Tool {
 			setVertexValue(new DoubleWritable(minDist));
 		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
-		    	System.out.println("~~~  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) + " dis: " + getSimpleEdgeValue(i));
+		    	System.out.println("~~~  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) +  " edgelength: " +getSimpleEdgeValue(i) +  " dis: " + distance);
 		    	sendMsg(this.getEdgeID(i), new DoubleWritable(distance));
 		    }
 		}
