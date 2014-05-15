@@ -7,17 +7,17 @@ import org.apache.hadoop.io.LongWritable;
 
 import com.ibm.giraph.utils.UnmodifiableSingleItem;
 
-public class MinCombiner extends VertexCombiner<LongWritable, LongWritable>
+public class MinCombiner extends VertexCombiner<LongWritable, DoubleWritable>
 {
 	@Override
-	public Iterable<LongWritable> combine(LongWritable vertexIndex,
-			Iterable<LongWritable> messages) throws IOException {
-		long sum=0;
-		for (LongWritable w : messages)
+	public Iterable<DoubleWritable> combine(LongWritable vertexIndex,
+			Iterable<DoubleWritable> messages) throws IOException {
+		double sum=0;
+		for (DoubleWritable w : messages)
 		{
 			sum = Math.min(sum, w.get());
 		}
-		return (Iterable<LongWritable>) new UnmodifiableSingleItem<LongWritable>(new LongWritable(sum));
+		return (Iterable<DoubleWritable>) new UnmodifiableSingleItem<DoubleWritable>(new DoubleWritable(sum));
 	}
 
 }
