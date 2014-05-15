@@ -66,11 +66,13 @@ implements Tool {
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
 			
-			System.out.print("????  id: " + this.getVertexId().toString() +" " + this.getNumEdges());
+			System.out.print("????  id: " + this.getVertexId().toString() +" " + this.getNumOutEdges());
 			
-		    for (int i = 0 ;i <  this.getNumEdges() ; i ++) {
+		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
-
+		    	
+		    	System.out.print("----  id: " + this.getEdgeID(i)+" " + getSimpleEdgeValue(i));
+		    	
 		    	sendMessage(this.getEdgeID(i), new DoubleWritable(distance));
 		    }
 		}
