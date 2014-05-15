@@ -42,8 +42,9 @@ public abstract class LongDoubleDoubleDoubleVertex extends
         
         int n = 0;
         for (Entry<LongWritable, DoubleWritable> neighbor : edges.entrySet()) {
-            this.neighbors[n++] = neighbor.getKey().get();
-            this.edgeValues[n++] = neighbor.getValue().get();
+            this.neighbors[n] = neighbor.getKey().get();
+            this.edgeValues[n] = neighbor.getValue().get();
+            n++;
         }
         if(messages==null)
         {
