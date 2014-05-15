@@ -55,26 +55,22 @@ implements Tool {
 	}
 	@Override
 	public void compute(Iterator<DoubleWritable> msgs) throws IOException {
-		System.out.println("###  step: " + this.getSuperstep() + " vid: " + this.getVertexId());
 		
 		if (getSuperstep() == 0) {
-			System.out.println("set " + this.getVertexId() +" to " +Double.MAX_VALUE );
 		    setVertexValue(new DoubleWritable(Double.MAX_VALUE));
-		    System.out.println(" vid: "+ this.getVertexId() + " val " + this.getVertexValueSimpleType());
 		}
+		System.out.println("step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " value: " + this.getVertexValue());
 		double minDist = isSource() ? 0d : Double.MAX_VALUE;
 		
 		while(msgs.hasNext()) {
 			double v = msgs.next().get();
-			System.out.println( "*** vid: " + this.getVertexId() + " msg: " +  v);
 		    minDist = Math.min(minDist, v);
 		}
-		System.out.println("!!!  step: " + this.getSuperstep() + " mindist " + minDist);
+
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
 		    for (int i = 0 ;i <  this.getNumOutEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
-		    	System.out.println("~~~  step: " + this.getSuperstep() + " vid: " + this.getVertexId() + " val: " + this.getVertexValueSimpleType() + " tarTd: " + this.getEdgeID(i) +  " edgelength: " +getSimpleEdgeValue(i) +  " dis: " + distance);
 		    	sendMsg(this.getEdgeID(i), new DoubleWritable(distance));
 		    }
 		}
