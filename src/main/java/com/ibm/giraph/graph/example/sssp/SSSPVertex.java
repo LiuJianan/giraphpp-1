@@ -4,17 +4,17 @@ package com.ibm.giraph.graph.example.sssp;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.apache.giraph.graph.Edge;
+
 import org.apache.giraph.graph.GiraphJob;
 import org.apache.giraph.graph.LongDoubleDoubleDoubleVertex;
 import org.apache.giraph.graph.LongDoubleDoubleNeighborhood;
-import org.apache.giraph.graph.LongLongNullLongVertex;
+
 import org.apache.giraph.graph.partition.HashMasterPartitioner;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
+
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
@@ -23,8 +23,7 @@ import org.apache.log4j.Logger;
 
 import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
 import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
-import com.ibm.giraph.graph.example.ioformats.SimpleLongDoubleNullDoubleBinaryInputFormat;
-import com.ibm.giraph.graph.example.ioformats.SimpleLongDoubleNullXVertexBinaryInputFormat;
+import com.ibm.giraph.graph.example.ioformats.SimpleLongDoubleDoubleVertexBinaryInputFormat;
 import com.ibm.giraph.graph.example.ioformats.SimpleLongXXXBinaryVertexOutputFormat;
 import com.ibm.giraph.graph.example.partitioners.MyLongRangePartitionerFactory;
 import com.ibm.giraph.utils.MapRedudeUtils;
@@ -80,7 +79,7 @@ implements Tool {
 		
 	}
 
-	public static class SimpleLongDoubleNullVertexBinaryOutputFormat 
+	public static class SimpleLongDoubleDoubleVertexBinaryOutputFormat 
 	extends SimpleLongXXXBinaryVertexOutputFormat<DoubleWritable, DoubleWritable, LongDoubleDoubleNeighborhood>
 	{
 		
@@ -94,17 +93,19 @@ implements Tool {
 					+ "<if hash partition, #partitions, otherwise range partiton file> <hybrid model: true, otherwise: false>");
 			System.exit(-1);
 		}
+		
 		GiraphJob job = new GiraphJob(getConf(), "SSSPVertex");
 		job.getConfiguration().setInt(GiraphJob.CHECKPOINT_FREQUENCY, 0);
 		job.setVertexClass(SSSPVertex.class);
-		job.setVertexInputFormatClass(SimpleLongDoubleNullDoubleBinaryInputFormat.class);
-		job.setVertexOutputFormatClass(SimpleLongDoubleNullVertexBinaryOutputFormat.class);
+		job.setVertexInputFormatClass(SimpleLongDoubleDoubleVertexBinaryInputFormat.class);
+		job.setVertexOutputFormatClass(SimpleLongDoubleDoubleVertexBinaryOutputFormat.class);
+		
 		FileInputFormat.addInputPath(job.getInternalJob(), new Path(args[0]));
 		Path outpath=new Path(args[1]);
 		FileOutputFormat.setOutputPath(job.getInternalJob(), outpath);
 		MapRedudeUtils.deleteFileIfExistOnHDFS(outpath, job.getConfiguration());
 		
-		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), SimpleLongDoubleNullXVertexBinaryInputFormat.NEIGHBORHOOD_CLASS);
+		KVBinaryInputFormat.setInputNeighborhoodClass(job.getConfiguration(), SimpleLongDoubleDoubleVertexBinaryInputFormat.NEIGHBORHOOD_CLASS);
 		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(), LongDoubleDoubleNeighborhood.class);
 		
 		job.setVertexCombinerClass(MinCombiner.class);
