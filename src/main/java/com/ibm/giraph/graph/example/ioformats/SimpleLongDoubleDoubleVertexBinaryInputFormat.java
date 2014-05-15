@@ -45,7 +45,7 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 			
 			Configuration conf = context.getConfiguration();
 		    BasicVertex<LongWritable, DoubleWritable, DoubleWritable, M> vertex = BspUtils.createVertex(conf);
-
+		    
 		    LongWritable vertexId = new LongWritable(reader.getCurrentKey().get());
 		    LongDoubleDoubleNeighborhood value=reader.getCurrentValue();
 		    DoubleWritable vertexValue=new DoubleWritable();
@@ -54,7 +54,7 @@ extends VertexInputFormat<LongWritable, DoubleWritable, DoubleWritable, M>{
 		    Map<LongWritable, DoubleWritable> edges = Maps.newHashMap();
 			for(int i=0; i<n; i++)
 				edges.put(new LongWritable(value.getEdgeID(i)), 
-						new DoubleWritable(value.getEdgeValue(i)));
+						new DoubleWritable(value.getEdgeValueByIndex(i)));
 		    vertex.initialize(vertexId, vertexValue, edges, null);
 		    return vertex;
 		}

@@ -42,11 +42,13 @@ public class TextBinaryEdgeValueMerge {
 
 			String[] nbs = values.iterator().next().toString().split("\\s+");
 			int numofEdges = Integer.parseInt(nbs[1]);
-			long[] edges = new long[numofEdges];
-			double[] edgeValues = new double[numofEdges];
+			Vector<Long> edges = new Vector<Long>();
+			
+			Vector<Double> edgeValues = new Vector<Double>();
+
 			for (int i = 0; i < numofEdges; i++) {
-				edges[i] = Long.parseLong(nbs[2 * i + 2]);
-				edgeValues[i] = Double.parseDouble(nbs[2 * i + 3]);
+				edges.add(Long.parseLong(nbs[2 * i + 2]));
+				edgeValues.add(Double.parseDouble(nbs[2 * i + 3]));
 			}
 
 			val.setSimpleEdges(edges, edgeValues);

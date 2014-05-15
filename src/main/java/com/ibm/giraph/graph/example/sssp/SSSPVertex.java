@@ -65,6 +65,9 @@ implements Tool {
 
 		if (minDist < getVertexValue().get()) {
 			setVertexValue(new DoubleWritable(minDist));
+			
+			System.out.print("id: " + this.getVertexId().toString() +" " + this.getNumEdges());
+			
 		    for (int i = 0 ;i <  this.getNumEdges() ; i ++) {
 		    	double distance = minDist + getSimpleEdgeValue(i);
 
@@ -80,7 +83,7 @@ implements Tool {
 	}
 
 	public static class SimpleLongDoubleDoubleVertexBinaryOutputFormat 
-	extends SimpleLongXXXBinaryVertexOutputFormat<DoubleWritable, DoubleWritable, LongDoubleDoubleNeighborhood>
+	extends SimpleLongXXXBinaryVertexOutputFormat<DoubleWritable, DoubleWritable, LongDoubleDoubleNeighborhood<DoubleWritable,DoubleWritable>  >
 	{
 		
 	}

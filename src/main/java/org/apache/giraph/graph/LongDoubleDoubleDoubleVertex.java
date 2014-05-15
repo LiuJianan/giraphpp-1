@@ -58,34 +58,6 @@ public abstract class LongDoubleDoubleDoubleVertex extends
             this.messages[n++] = message.get();
         }
     }
-    /*
-    public void initialize(long vertexId, double vertexValue,
-    		LongDoubleDoubleNeighborhood edges,
-            Iterable<DoubleWritable> messages) {
-        id = vertexId;
-        value = vertexValue;
-        neighbors = new long[edges.getNumberEdges()];
-        edgeValues = new double[edges.getNumberEdges()];
-        
-        int n = 0;
-        for(; n<neighbors.length; n++)
-        {
-            this.neighbors[n] = edges.getEdgeID(n);
-            edgeValues[n] = edges.getEdgeValue(n);
-        }
-        if(messages==null)
-        {
-        	this.messages=new double[0];
-        	return;
-        }
-        
-        this.messages = new double[Iterables.size(messages)];
-        n = 0;
-        for (DoubleWritable message : messages) {
-            this.messages[n++] = message.get();
-        }
-    }
-*/
 
     @Override
     public LongWritable getVertexId() {
