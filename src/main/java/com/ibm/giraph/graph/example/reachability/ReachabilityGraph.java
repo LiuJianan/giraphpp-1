@@ -3,20 +3,17 @@ package com.ibm.giraph.graph.example.reachability;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.Iterator;
 
-import org.apache.giraph.graph.BasicVertex;
 import org.apache.giraph.graph.GiraphJob;
-import org.apache.giraph.graph.LongDoubleNullDoubleVertex;
-import org.apache.giraph.graph.LongDoubleNullNeighborhood;
+
 import org.apache.giraph.graph.LongLongLongLongVertex;
 import org.apache.giraph.graph.LongLongLongNeighborhood;
 import org.apache.giraph.graph.partition.HashMasterPartitioner;
 import org.apache.giraph.graph.partition.Partition;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.DoubleWritable;
+
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
+
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;

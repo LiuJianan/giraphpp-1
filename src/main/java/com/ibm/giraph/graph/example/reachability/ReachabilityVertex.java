@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 
 import com.ibm.giraph.graph.example.ioformats.KVBinaryInputFormat;
 import com.ibm.giraph.graph.example.ioformats.KVBinaryOutputFormat;
-import com.ibm.giraph.graph.example.ioformats.SimpleLongDoubleNullXVertexBinaryInputFormat;
 import com.ibm.giraph.graph.example.ioformats.SimpleLongLongLongVertexBinaryInputFormat;
 import com.ibm.giraph.graph.example.ioformats.SimpleLongXXXBinaryVertexOutputFormat;
 import com.ibm.giraph.graph.example.partitioners.MyLongRangePartitionerFactory;
@@ -195,7 +194,7 @@ public class ReachabilityVertex extends LongLongLongLongVertex implements Tool {
 		KVBinaryInputFormat
 				.setInputNeighborhoodClass(
 						job.getConfiguration(),
-						SimpleLongDoubleNullXVertexBinaryInputFormat.NEIGHBORHOOD_CLASS);
+						SimpleLongLongLongVertexBinaryInputFormat.NEIGHBORHOOD_CLASS);
 		KVBinaryOutputFormat.setOutputNeighborhoodClass(job.getConfiguration(),
 				LongLongLongNeighborhood.class);
 

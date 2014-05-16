@@ -11,10 +11,9 @@ import org.apache.giraph.utils.UnmodifiableDoubleArrayIterator;
 import org.apache.giraph.utils.UnmodifiableLongArrayIterator;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
+
 
 import com.google.common.collect.Iterables;
-import com.ibm.giraph.graph.example.ioformats.SkeletonNeighborhood;
 
 /*
  * This class is added

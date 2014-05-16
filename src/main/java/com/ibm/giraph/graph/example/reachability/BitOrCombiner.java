@@ -3,7 +3,6 @@ package com.ibm.giraph.graph.example.reachability;
 
 import java.io.IOException;
 import org.apache.giraph.graph.VertexCombiner;
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
 
 import com.ibm.giraph.utils.UnmodifiableSingleItem;
