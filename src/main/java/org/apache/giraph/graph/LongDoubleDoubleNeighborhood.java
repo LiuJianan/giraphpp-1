@@ -1,15 +1,9 @@
 package org.apache.giraph.graph;
 
-import java.io.BufferedInputStream;
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.DataOutput;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.TreeMap;
 
 import org.apache.giraph.graph.BasicVertex;
 import org.apache.giraph.graph.Edge;
@@ -51,7 +45,7 @@ public class LongDoubleDoubleNeighborhood<V extends Writable, E extends Writable
 	{
 		setSize(edges.size());
 		int i=0;
-		for(Long e: edges)
+		for(long e: edges)
 		{
 			edgeIDs[i]=e;
 			i++;

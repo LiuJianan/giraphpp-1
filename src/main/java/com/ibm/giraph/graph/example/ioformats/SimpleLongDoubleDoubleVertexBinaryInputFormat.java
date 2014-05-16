@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.apache.giraph.graph.BasicVertex;
 import org.apache.giraph.graph.BspUtils;
-import org.apache.giraph.graph.LongDoubleDoubleDoubleVertex;
 import org.apache.giraph.graph.VertexInputFormat;
 import org.apache.giraph.graph.VertexReader;
 import org.apache.hadoop.conf.Configuration;

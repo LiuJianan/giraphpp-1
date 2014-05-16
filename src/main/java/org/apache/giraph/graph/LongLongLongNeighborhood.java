@@ -1,20 +1,14 @@
 package org.apache.giraph.graph;
 
 
-import java.io.BufferedInputStream;
+
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.DataOutput;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.TreeMap;
 
 import org.apache.giraph.graph.BasicVertex;
 import org.apache.giraph.graph.Edge;
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Writable;
 
