@@ -51,6 +51,7 @@ public class ReachabilityGraph
 	while (iterator.hasNext()) {
 	    LongLongLongLongVertex vertex = (LongLongLongLongVertex) iterator
 		    .next();
+	    vertex.voteToHalt();
 	    long[] list = vertex.getMessagesSimpleType();
 	    if (list.length == 0)
 		continue;

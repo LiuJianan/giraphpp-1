@@ -46,6 +46,7 @@ public class SequentialBFS {
 	while (iterator.hasNext()) {
 	    LongLongLongLongVertex vertex = (LongLongLongLongVertex) iterator
 		    .next();
+	    vertex.voteToHalt();
 	    long tag = 0;
 	    if (vertex.getVertexIdSimpleType() == ReachabilityGraph.BFS_SOURCE) {
 		tag = 1;
